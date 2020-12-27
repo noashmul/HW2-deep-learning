@@ -26,7 +26,7 @@ class TokenDictionary:
     #     return len(self.tokens)
 
     def cnt_word(self, name):
-        questions = json.load(open(f'/datashare/v2_OpenEnded_mscoco_{name}2014_questions.json', 'r'))['questions']
+        questions = json.load(open(f'/content/v2_OpenEnded_mscoco_{name}2014_questions.json', 'r'))['questions']
         cnt_dict = {}
         for sentence in questions:
             sentence = sentence['question']
@@ -76,8 +76,8 @@ class VQAFeatureDataset(Dataset):
         self.load_data(name, max_question_length)
 
     def load_data(self,name, max_question_length):
-        questions = json.load(open(f'/datashare/v2_OpenEnded_mscoco_{name}2014_questions.json', 'r'))['questions']
-        answers = json.load(open(f'/datashare/v2_mscoco_{name}2014_annotations.json', 'r'))['annotations']
+        questions = json.load(open(f'/content/v2_OpenEnded_mscoco_{name}2014_questions.json', 'r'))['questions']
+        answers = json.load(open(f'/content/v2_mscoco_{name}2014_annotations.json', 'r'))['annotations']
         all_answers = pickle.load(open(f'data/cache/{name}_target_new.pkl', 'rb'))
         questions = sorted(questions, key=lambda q: q['question_id'])
         answers = sorted(answers, key=lambda a: a['question_id'])
@@ -140,7 +140,7 @@ class VQAFeatureDataset(Dataset):
         image_id = self.entries[index][1]
         for i in range(10):
             try:
-                image = Image.open(f'/datashare/{name}2014/COCO_{name}2014_{str(image_id).zfill(12)}.jpg').convert('RGB')
+                image = Image.open(f'/content/{name}2014/COCO_{name}2014_{str(image_id).zfill(12)}.jpg').convert('RGB')
                 # Resize
                 resize = transforms.Resize(size=(299, 299)) #TODO change?
                 image = resize(image)
