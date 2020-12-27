@@ -253,11 +253,11 @@ def get_question(qid, questions):
 
 
 def load_v2():
-    train_answer_file = 'datashare/v2_mscoco_train2014_annotations.json'
+    train_answer_file = '/content/v2_mscoco_train2014_annotations.json'
     with open(train_answer_file) as f:
         train_answers = json.load(f)['annotations']
 
-    val_answer_file = 'datashare/v2_mscoco_val2014_annotations.json'
+    val_answer_file = '/content/v2_mscoco_val2014_annotations.json'
     with open(val_answer_file) as f:
         val_answers = json.load(f)['annotations']
 
