@@ -59,7 +59,7 @@ class VQAFeatureDataset(Dataset):
         self.load_data(name, max_question_length)
 
     def create_pt(self,phase):
-        self.imgs_ids = [s[13:-4] for s in os.listdir(os.path.join('/home/student', f'{phase}2014'))]
+        self.imgs_ids = [s[13:-4] for s in os.listdir(os.path.join('/content', f'{phase}2014'))]
         for id in self.imgs_ids:
             path = os.path.join('/content',f'{phase}2014', f'COCO_{phase}2014_{id}.jpg')
             save_path = os.path.join('/content',f'{phase}2014', f'COCO_{phase}2014_{id}.pt')
