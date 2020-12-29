@@ -1,4 +1,4 @@
-# import dataset
+import dataset
 from torch.utils.data import DataLoader
 import torch.nn as nn
 import torch
@@ -10,7 +10,7 @@ import pickle
 import time
 import matplotlib.pyplot as plt
 import platform
-import dataset_old as dataset
+# import dataset_old as dataset
 from compute_softscore import main as c_s_main
 
 class q_LSTM(nn.Module):
