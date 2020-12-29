@@ -51,7 +51,7 @@ class VQAFeatureDataset(Dataset):
         assert name in ['train', 'val']
         self.dictionary = dictionary
         self.entries = []
-        ans2labels = pickle.load(open('data/cache/trainval_ans2label.pkl', 'rb'))
+        ans2labels = pickle.load(open('/content/cache/trainval_ans2label.pkl', 'rb'))
         self.num_of_answers = len(ans2labels)
         del ans2labels
         if create_pt:
@@ -102,7 +102,7 @@ class VQAFeatureDataset(Dataset):
             a_token[key] = score  # a_token[ans2labels[a]] = score
         for i in range(10):
             try:
-                path = os.path.join('/content', f'{name}2014', f'COCO_{name}2014_{str(image_id).zfill(12)}.pt')
+                path = os.path.join('/content/home/student', f'{name}2014', f'COCO_{name}2014_{str(image_id).zfill(12)}.pt')
                 image_tensor = torch.load(path)
                 break
             except Exception as e:
