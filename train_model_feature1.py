@@ -252,7 +252,7 @@ def main():
     epochs = 20
     num_workers = 12 if 'Linux' in platform.platform() else 0
     c_s_main()
-    class_num = len(pickle.load(open('data/cache/trainval_ans2label.pkl', 'rb')))
+    class_num = len(pickle.load(open('/content/HW2-deep-learning/cache/trainval_ans2label.pkl', 'rb')))
 
     print(
         f' batch size = {batch_size}, hidden size = {hidden_size}, embd dim ={word_dim}, num layers = {num_layers},'
