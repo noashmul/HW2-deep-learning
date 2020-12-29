@@ -21,7 +21,7 @@ class TokenDictionary:
         return len(self.tokens)
 
     def cnt_word(self):
-        questions = json.load(open(f'/datashare/v2_OpenEnded_mscoco_train2014_questions.json', 'r'))['questions']
+        questions = json.load(open(f'/content/v2_OpenEnded_mscoco_train2014_questions.json', 'r'))['questions']
         cnt_dict = {}
         for sentence in questions:
             sentence = sentence['question']
@@ -61,8 +61,8 @@ class VQAFeatureDataset(Dataset):
     def create_pt(self,phase):
         self.imgs_ids = [s[13:-4] for s in os.listdir(os.path.join('/home/student', f'{phase}2014'))]
         for id in self.imgs_ids:
-            path = os.path.join('/home/student',f'{phase}2014', f'COCO_{phase}2014_{id}.jpg')
-            save_path = os.path.join('/home/student',f'{phase}2014', f'COCO_{phase}2014_{id}.pt')
+#             path = os.path.join('/home/student',f'{phase}2014', f'COCO_{phase}2014_{id}.jpg')
+#             save_path = os.path.join('/home/student',f'{phase}2014', f'COCO_{phase}2014_{id}.pt')
             image = Image.open(path).convert('RGB')
             # Resize
             resize = transforms.Resize(size=(224, 224))
@@ -74,9 +74,9 @@ class VQAFeatureDataset(Dataset):
             os.remove(path)  # delete .jpg file # TODO
 
     def load_data(self,name, max_question_length):
-        questions = json.load(open(f'/datashare/v2_OpenEnded_mscoco_{name}2014_questions.json', 'r'))['questions']
-        answers = json.load(open(f'/datashare/v2_mscoco_{name}2014_annotations.json', 'r'))['annotations']
-        all_answers = pickle.load(open(f'data/cache/{name}_target_new.pkl', 'rb'))
+        questions = json.load(open(f'/content/v2_OpenEnded_mscoco_{name}2014_questions.json', 'r'))['questions']
+        answers = json.load(open(f'/content/v2_mscoco_{name}2014_annotations.json', 'r'))['annotations']
+        all_answers = pickle.load(open(f'/content/cache/{name}_target_new.pkl', 'rb'))
         questions = sorted(questions, key=lambda q: q['question_id'])
         answers = sorted(answers, key=lambda a: a['question_id'])
         for question, answer in zip(questions,answers):
@@ -102,7 +102,7 @@ class VQAFeatureDataset(Dataset):
             a_token[key] = score  # a_token[ans2labels[a]] = score
         for i in range(10):
             try:
-                path = os.path.join('/home/student', f'{name}2014', f'COCO_{name}2014_{str(image_id).zfill(12)}.pt')
+                path = os.path.join('/content', f'{name}2014', f'COCO_{name}2014_{str(image_id).zfill(12)}.pt')
                 image_tensor = torch.load(path)
                 break
             except Exception as e:
