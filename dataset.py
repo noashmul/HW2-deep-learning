@@ -61,8 +61,8 @@ class VQAFeatureDataset(Dataset):
     def create_pt(self,phase):
         self.imgs_ids = [s[13:-4] for s in os.listdir(os.path.join('/home/student', f'{phase}2014'))]
         for id in self.imgs_ids:
-            path = os.path.join('/content/home/student',f'{phase}2014', f'COCO_{phase}2014_{id}.jpg')
-            save_path = os.path.join('/content/home/student',f'{phase}2014', f'COCO_{phase}2014_{id}.pt')
+            path = os.path.join('/content',f'{phase}2014', f'COCO_{phase}2014_{id}.jpg')
+            save_path = os.path.join('/content',f'{phase}2014', f'COCO_{phase}2014_{id}.pt')
             image = Image.open(path).convert('RGB')
             # Resize
             resize = transforms.Resize(size=(224, 224))
@@ -102,7 +102,7 @@ class VQAFeatureDataset(Dataset):
             a_token[key] = score  # a_token[ans2labels[a]] = score
         for i in range(10):
             try:
-                path = os.path.join('/content/home/student', f'{name}2014', f'COCO_{name}2014_{str(image_id).zfill(12)}.pt')
+                path = os.path.join('/content', f'{name}2014', f'COCO_{name}2014_{str(image_id).zfill(12)}.pt')
                 image_tensor = torch.load(path)
                 break
             except Exception as e:
