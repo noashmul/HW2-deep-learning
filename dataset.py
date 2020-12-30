@@ -102,8 +102,10 @@ class VQAFeatureDataset(Dataset):
             a_token[key] = score  # a_token[ans2labels[a]] = score
         for i in range(10):
             try:
-                path = os.path.join('/content', f'{name}2014', f'COCO_{name}2014_{str(image_id).zfill(12)}.pt')
-                image_tensor = torch.load(path)
+                image = Image.open(f'datashare/{name}2014/COCO_{name}2014_{str(image_id).zfill(12)}.jpg').convert('RGB')
+                resize = transforms.Resize(size=(224, 224)) #TODO change?
+                image = resize(image)
+                image_tensor = TF.to_tensor(image)
                 break
             except Exception as e:
                 print(e)
