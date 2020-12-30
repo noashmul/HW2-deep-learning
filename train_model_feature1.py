@@ -137,7 +137,7 @@ class fully(nn.Module):
 #     self.softmax(out).to(self.device)
 
 def accuracy(img_id, question_id, answers_pred, name='train'):
-    target = pickle.load(open(f'data/cache/{name}_target_new.pkl', 'rb'))
+    target = pickle.load(open(f'/content/HW2-deep-learning/cache/{name}_target_new.pkl', 'rb'))
     acc = 0.
     for i_id, q_id, a_pred in zip(img_id, question_id, answers_pred):
         a_pred = torch.argmax(a_pred).item()
