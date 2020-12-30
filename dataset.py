@@ -102,7 +102,7 @@ class VQAFeatureDataset(Dataset):
             a_token[key] = score  # a_token[ans2labels[a]] = score
         for i in range(10):
             try:
-                image = Image.open(f'datashare/{name}2014/COCO_{name}2014_{str(image_id).zfill(12)}.jpg').convert('RGB')
+                image = Image.open(f'/content/{name}2014/COCO_{name}2014_{str(image_id).zfill(12)}.jpg').convert('RGB')
                 resize = transforms.Resize(size=(224, 224)) #TODO change?
                 image = resize(image)
                 image_tensor = TF.to_tensor(image)
