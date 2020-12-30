@@ -76,7 +76,7 @@ class VQAFeatureDataset(Dataset):
     def load_data(self,name, max_question_length):
         questions = json.load(open(f'/content/v2_OpenEnded_mscoco_{name}2014_questions.json', 'r'))['questions']
         answers = json.load(open(f'/content/v2_mscoco_{name}2014_annotations.json', 'r'))['annotations']
-        all_answers = pickle.load(open(f'/content/HW2-deep-learning/content/cache/{name}_target_new.pkl', 'rb'))
+        all_answers = pickle.load(open(f'/content/HW2-deep-learning/cache/{name}_target_new.pkl', 'rb'))
         questions = sorted(questions, key=lambda q: q['question_id'])
         answers = sorted(answers, key=lambda a: a['question_id'])
         for question, answer in zip(questions,answers):
